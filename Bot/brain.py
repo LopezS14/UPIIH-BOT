@@ -10,9 +10,9 @@ from docx import Document as DocxDocument
 from tensorflow.keras.models import load_model
 import nltk
 from nltk.stem import WordNetLemmatizer
-from playsound import playsound
+import simpleaudio as sa
 
-# Inicializar lematizador
+# Inicializar el lematizador
 lemmatizer = WordNetLemmatizer()
 
 # Función para descargar archivos desde URLs
@@ -68,7 +68,7 @@ def predict_class(sentence):
 # Diccionario de rutas de documentos
 doc_paths = {
     "Sistemas automotrices semestre 7": "automotricesSemestre7.docx",
-    "Ingenieria mecatronica semestre 1 ": "mecatronica1.docx",
+    "Ingenieria mecatronica semestre 1": "mecatronica1.docx",
     "Sistemas automotrices semestre 7-programasintetico": "SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasintetico": "M_PS1.pdf"
 }
@@ -146,13 +146,8 @@ def get_response(tag, intents_json):
     
     return result
 
-# Ejemplo de llamada a una función para probar
-if __name__ == "__main__":
-    # Puedes usar streamlit para crear una interfaz de usuario para tu aplicación
-    st.title("Chatbot para Universidad")
-    user_input = st.text_input("Escribe tu mensaje:")
-    
-    if user_input:
-        response_tag = predict_class(user_input)
-        response = get_response(response_tag, intents)
-        st.write(response)
+# Reproduce un sonido para indicar una respuesta
+def play_sound(file_path):
+    wave_obj = sa.WaveObject.from_wave_file(file_path)
+    play_obj = wave_obj.play()
+    play_obj.wait_done()  # Esperar a que termine la reproducción
