@@ -132,7 +132,7 @@ if st.session_state.first_message:
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
     st.session_state.first_message = False
-    
+    speak(initial_message)
 
 if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     with st.chat_message("user", avatar=st.session_state.user_avatar):
@@ -145,4 +145,4 @@ if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     with st.chat_message("Bot", avatar=user_avatar):
         st.markdown(res)
     st.session_state.messages.append({"role": "Bot", "content": res})
- 
+    speak(res)
