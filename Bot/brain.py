@@ -10,7 +10,6 @@ from docx import Document as DocxDocument
 from tensorflow.keras.models import load_model
 import nltk
 from nltk.stem import WordNetLemmatizer
-from playsound import playsound  # Cambiado
 
 # Inicializar el lematizador
 lemmatizer = WordNetLemmatizer()
@@ -145,7 +144,3 @@ def get_response(tag, intents_json):
         result += handle_document(tag)
     
     return result
-
-# Reproduce un sonido para indicar una respuesta
-def play_sound(file_path):
-    playsound(file_path)  # Cambiado
