@@ -1,11 +1,14 @@
-
 python-docx
 tensorflow
 nltk
 pydub
 streamlit==1.38.0
 gtts==2.3.1
-pygame==2.1.2  # versión de pygame
-
+pygame==2.1.2
 Pillow==9.2.0
-
+numpy
+scipy
+requests
+beautifulsoup4
+pytest
+black
