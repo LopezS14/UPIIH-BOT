@@ -2,5 +2,5 @@ streamlit
 gtts
 pygame
 python-docx
-keras
 tensorflow
+
