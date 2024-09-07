@@ -17,7 +17,7 @@ lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/intents.json').read())
 words = pickle.load(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/words.pkl', 'rb'))
 classes = pickle.load(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/classes.pkl, 'rb'))
-model = load_model('chatbot_model.h5')
+model = load_model('https://github.com/LopezS14/UPIIH-BOT/edit/main/Bot/brain.py')
 
 # Pasamos las palabras de oración a su forma raíz
 def clean_up_sentence(sentence):
