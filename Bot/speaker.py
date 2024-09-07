@@ -3,7 +3,6 @@ from gtts import gTTS
 import pygame
 import os
 import tempfile
-from tensorflow.keras.models import load_model
 from brain import predict_class, get_response, intents
 st.markdown ("""
 <nav class="navbar bg-body-tertiary">
