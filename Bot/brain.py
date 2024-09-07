@@ -64,7 +64,7 @@ def predict_class(sentence):
 doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Ingenieria mecatronica semestre 1": "mecatronica1.docx",
-    "Sistemas automotrices semestre 7-programasintetico": "SA_PS7.pdf",
+    "Sistemas automotrices semestre 7-programasintetico": "",
     "Ingenieria mecatronica semestre 1-programasintetico": "M_PS1.pdf"
 }
 
