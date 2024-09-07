@@ -10,7 +10,9 @@ from docx import Document as DocxDocument
 from tensorflow.keras.models import load_model
 import nltk
 from nltk.stem import WordNetLemmatizer
+from playsound import playsound
 
+# Inicializar lematizador
 lemmatizer = WordNetLemmatizer()
 
 # Función para descargar archivos desde URLs
@@ -143,3 +145,14 @@ def get_response(tag, intents_json):
         result += handle_document(tag)
     
     return result
+
+# Ejemplo de llamada a una función para probar
+if __name__ == "__main__":
+    # Puedes usar streamlit para crear una interfaz de usuario para tu aplicación
+    st.title("Chatbot para Universidad")
+    user_input = st.text_input("Escribe tu mensaje:")
+    
+    if user_input:
+        response_tag = predict_class(user_input)
+        response = get_response(response_tag, intents)
+        st.write(response)
