@@ -1,4 +1,4 @@
-ximport random
+import random
 import io
 import streamlit as st
 import json
