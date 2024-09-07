@@ -102,7 +102,7 @@ st.markdown(f"""
     """, unsafe_allow_html=True)
 
 # Cargar imagen en el sidebar
-user_avatar = ""
+user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/user.png"
 st.sidebar.image(user_avatar, use_column_width=True)
 
 # Función para hablar
