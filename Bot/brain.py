@@ -7,7 +7,7 @@ import numpy as np
 import requests
 from datetime import datetime
 from docx import Document as DocxDocument
-from tensorflow.keras.models import load_model
+from nltk.tokenize import word_tokenize, sent_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
 
