@@ -16,7 +16,7 @@ lemmatizer = WordNetLemmatizer()
 # Importamos los archivos generados en el código anterior
 intents = json.loads(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/intents.json').read())
 words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
+classes = pickle.load(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/classes.pkl, 'rb'))
 model = load_model('chatbot_model.h5')
 
 # Pasamos las palabras de oración a su forma raíz
