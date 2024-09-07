@@ -49,7 +49,7 @@ def speak(text):
                 pass  # Manejo de excepción si el archivo aún está en uso
 
 # Ruta de la imagen
-user_avatar = "M3.gif"  # Asegúrate de que la ruta es correcta
+user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"  # Asegúrate de que la ruta es correcta
 
 # Asegúrate de que la imagen existe
 
@@ -63,7 +63,7 @@ if "user_avatar" not in st.session_state:
     st.session_state.user_avatar = "user.png"  # Ruta del avatar del usuario
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"], avatar="M3.gif" if message["role"] == "Bot" else st.session_state.user_avatar):
+    with st.chat_message(message["role"], avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif" if message["role"] == "Bot" else st.session_state.user_avatar):
         st.markdown(message["content"])
 
 if st.session_state.first_message:
@@ -83,7 +83,7 @@ if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     insts = predict_class(prompt)
     res = get_response(insts, intents)
 
-    with st.chat_message("Bot", avatar="M3.gif"):
+    with st.chat_message("Bot", avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"):
         st.markdown(res)
     st.session_state.messages.append({"role": "Bot", "content": res})
     speak(res)  # Hablar la respuesta
