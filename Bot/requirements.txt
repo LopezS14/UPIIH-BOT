@@ -1,12 +1,7 @@
-random
-io
 streamlit==1.38.0
-json
-pickle
 numpy
 requests
-datetime
-docx
+python-docx
 tensorflow
 nltk
 pydub
