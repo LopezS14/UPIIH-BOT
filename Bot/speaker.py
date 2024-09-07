@@ -1,9 +1,10 @@
-import streamlit as st
-from gtts import gTTS
-from playsound import playsound
-from PIL import Image
-import os
+from pydub import AudioSegment
+from pydub.playback import play
 import tempfile
+import os
+from gtts import gTTS
+from PIL import Image
+import streamlit as st
 from brain import predict_class, get_response, intents
 
 # Configuración de la página
@@ -108,7 +109,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.image(image, use_column_width=True)
+    st.image(image_path, use_column_width=True)
 
 def speak(text):
     temp_audio_file = None
@@ -121,7 +122,8 @@ def speak(text):
         temp_audio_file.close()
 
         # Reproducir el archivo de audio
-        playsound(temp_audio_file_path)
+        audio = AudioSegment.from_mp3(temp_audio_file_path)
+        play(audio)
     except Exception as e:
         st.error(f"Error al reproducir el audio: {e}")
     finally:
