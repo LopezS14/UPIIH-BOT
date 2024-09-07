@@ -4,5 +4,4 @@ requests
 python-docx
 tensorflow
 nltk
-pydub
-simpleaudio
+playsound
