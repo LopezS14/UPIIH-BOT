@@ -3,4 +3,3 @@ gtts
 pygame
 python-docx
 tensorflow
-
