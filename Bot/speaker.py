@@ -7,10 +7,10 @@ import tempfile
 from brain import predict_class, get_response, intents
 
 st.set_page_config(
-    page_title="UPIIH BOT",  # El título que aparecerá en la ventana del navegador
-    page_icon="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif",  # Puedes usar un emoji o la ruta a un archivo de icono
-    layout="wide",  # Opcional: "wide" o "centered"
-    initial_sidebar_state="expanded"  # Opcional: "expanded" o "collapsed"
+    page_title="UPIIH BOT",
+    page_icon="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # Sidebar
@@ -18,12 +18,10 @@ st.sidebar.markdown("<h1 style='font-size: 20px;'>Genera tu planeación didácti
 
 # Header
 image_path = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"
-image = Image.open(image_path)
 image_url = 'https://img.freepik.com/foto-gratis/acuarela-color-rojo-oscuro-textura-fondo-pintado-mano-fondo-color-vino-tinto-acuarela_145343-192.jpg?size=626&ext=jpg'
 
 st.markdown("""
     <style>
-    /* Estilos para el contenedor del encabezado */
     .header-container {
         display: flex;
         flex-direction: column;
@@ -32,14 +30,12 @@ st.markdown("""
         background-color: #ffff;
     }
     
-    /* Estilos para los logos */
     .header-logo {
         width: 120px;
         height: 80px;
         margin: 0 10px;
     }
     
-    /* Estilos para el texto del encabezado */
     .header-title {
         color: black;
         font-size: 1.5em;
@@ -47,7 +43,6 @@ st.markdown("""
         text-align:center;
     }
     
-    /* Estilos para los subtemas */
     .subtopics {
         text-align: center;
         font-size: 1.5em;
@@ -59,7 +54,6 @@ st.markdown("""
         margin:0;
     }
 
-    /* Media queries para hacer el diseño responsivo */
     @media (max-width: 600px) {
         .header-title {
             font-size: 0.9em;
@@ -108,7 +102,7 @@ st.markdown(f"""
     """, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.image(image, use_column_width=True)
+    st.image(image_path, use_column_width=True)
 
 def speak(text):
     temp_audio_file = None
@@ -135,5 +129,39 @@ def speak(text):
             except PermissionError:
                 pass  # Manejo de excepción si el archivo aún está en uso
 
-# Ruta de la imagen
-user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/
+# Ruta de la imagen del avatar del usuario
+user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/user.png"  # Asegúrate de que la URL es correcta
+
+# Lógica de la interfaz
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "first_message" not in st.session_state:
+    st.session_state.first_message = True
+if "user_avatar" not in st.session_state:
+    st.session_state.user_avatar = user_avatar
+
+for message in st.session_state.messages:
+    with st.chat_message(message["role"], avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif" if message["role"] == "Bot" else st.session_state.user_avatar):
+        st.markdown(message["content"])
+
+if st.session_state.first_message:
+    initial_message = "Hola, ¿cómo puedo ayudarte?"
+    with st.chat_message("Bot", avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"):
+        st.markdown(initial_message)
+    st.session_state.messages.append({"role": "Bot", "content": initial_message})
+    st.session_state.first_message = False
+    speak(initial_message)  # Hablar el mensaje inicial
+
+if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
+    with st.chat_message("user", avatar=st.session_state.user_avatar):
+        st.markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # Implementación del algoritmo de la IA
+    insts = predict_class(prompt)
+    res = get_response(insts, intents)
+
+    with st.chat_message("Bot", avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"):
+        st.markdown(res)
+    st.session_state.messages.append({"role": "Bot", "content": res})
+    speak(res)  # Hablar la respuesta
