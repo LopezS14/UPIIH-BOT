@@ -120,7 +120,7 @@ if "messages" not in st.session_state:
 if "first_message" not in st.session_state:
     st.session_state.first_message = True
 if "user_avatar" not in st.session_state:
-    st.session_state.user_avatar = "user.png"
+    st.session_state.user_avatar = "https://www.example.com/default-avatar.png"  # Cambia a una URL válida
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar=user_avatar if message["role"] == "Bot" else st.session_state.user_avatar):
