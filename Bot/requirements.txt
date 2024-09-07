@@ -5,6 +5,7 @@ nltk
 pydub
 streamlit==1.38.0
 gtts==2.3.1
-pygame==2.3.0
+pygame==2.1.2  # versión de pygame
+
 Pillow==9.2.0
 
