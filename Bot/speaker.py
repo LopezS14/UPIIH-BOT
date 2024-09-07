@@ -1,16 +1,17 @@
 import streamlit as st
 from gtts import gTTS
-import pygame
+from playsound import playsound
 from PIL import Image
 import os
 import tempfile
 from brain import predict_class, get_response, intents
 
+# Configuración de la página
 st.set_page_config(
-    page_title="UPIIH BOT",
-    page_icon="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_title="UPIIH BOT",  # Título en la ventana del navegador
+    page_icon="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif",  # Icono de la página
+    layout="wide",  # Opcional: "wide" o "centered"
+    initial_sidebar_state="expanded"  # Opcional: "expanded" o "collapsed"
 )
 
 # Sidebar
@@ -19,57 +20,62 @@ st.sidebar.markdown("<h1 style='font-size: 20px;'>Genera tu planeación didácti
 # Header
 image_path = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"
 image_url = 'https://img.freepik.com/foto-gratis/acuarela-color-rojo-oscuro-textura-fondo-pintado-mano-fondo-color-vino-tinto-acuarela_145343-192.jpg?size=626&ext=jpg'
-
 st.markdown("""
     <style>
+    /* Estilos para el contenedor del encabezado */
     .header-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* Cambia la dirección a columna para que los subtemas estén debajo del título */
         align-items: center;
         padding: 10px;
         background-color: #ffff;
     }
     
+    /* Estilos para los logos */
     .header-logo {
-        width: 120px;
-        height: 80px;
-        margin: 0 10px;
+        width: 120px; /* Tamaño de imagen aumentado */
+        height: 80px; /* Tamaño de imagen aumentado */
+        margin: 0 10px; /* Espacio alrededor de las imágenes */
     }
     
+    /* Estilos para el texto del encabezado */
     .header-title {
         color: black;
-        font-size: 1.5em;
-        margin:0;
-        text-align:center;
+        font-size: 1.5em; /* Tamaño de fuente que se ajusta automáticamente */
+        margin: 0; /* Elimina el margen predeterminado */
+        text-align: center;
     }
     
+    /* Estilos para los subtemas */
     .subtopics {
         text-align: center;
-        font-size: 1.5em;
-        margin: 0;
-        color:black;
+        font-size: 1.5em; /* Tamaño de fuente para pantallas grandes */
+        margin: 0; /* Elimina el margen predeterminado */
+        color: black;
     }
     
     .subtopics p {
-        margin:0;
+        margin: 0; /* Espacio reducido entre párrafos */
     }
 
+    /* Media queries para hacer el diseño responsivo */
     @media (max-width: 600px) {
         .header-title {
             font-size: 0.9em;
         }
         .subtopics {
-            font-size: 1em;
+            font-size: 1em; /* Tamaño de fuente más pequeño en pantallas más pequeñas */
         }
         .header-logo {
-            width:60px;
-            height: 60px;
+            width: 60px; /* Tamaño de imagen reducido para pantallas pequeñas */
+            height: 60px; /* Tamaño de imagen reducido para pantallas pequeñas */
         }
     }
+
     .circle-img {
         border-radius: 50%;
-        width: 100px;
-        height: 100px;
+        width: 100px; /* Ajusta el tamaño según lo necesario */
+        height: 100px; /* Ajusta el tamaño según lo necesario */
         object-fit: cover;
         display: block;
         margin-left: auto;
@@ -88,7 +94,7 @@ st.markdown("""
             <p>Unidad Profesional Interdisciplinaria Campus de Ingeniería Hidalgo</p>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 st.markdown(f"""
     <style>
@@ -99,10 +105,10 @@ st.markdown(f"""
         background-position: center;
     }}
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 with st.sidebar:
-    st.image(image_path, use_column_width=True)
+    st.image(image, use_column_width=True)
 
 def speak(text):
     temp_audio_file = None
@@ -114,14 +120,10 @@ def speak(text):
         temp_audio_file_path = temp_audio_file.name
         temp_audio_file.close()
 
-        # Inicializar pygame mixer
-        pygame.mixer.init()
-        pygame.mixer.music.load(temp_audio_file_path)
-        pygame.mixer.music.play()
-
-        # Esperar a que termine de reproducir
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
+        # Reproducir el archivo de audio
+        playsound(temp_audio_file_path)
+    except Exception as e:
+        st.error(f"Error al reproducir el audio: {e}")
     finally:
         if temp_audio_file:
             try:
@@ -129,16 +131,16 @@ def speak(text):
             except PermissionError:
                 pass  # Manejo de excepción si el archivo aún está en uso
 
-# Ruta de la imagen del avatar del usuario
-user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/user.png"  # Asegúrate de que la URL es correcta
+# Ruta de la imagen
+user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/user.png"  # Asegúrate de que la ruta es correcta
 
-# Lógica de la interfaz
+# Lógica de mostración de la interfaz
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "first_message" not in st.session_state:
     st.session_state.first_message = True
 if "user_avatar" not in st.session_state:
-    st.session_state.user_avatar = user_avatar
+    st.session_state.user_avatar = user_avatar  # Ruta del avatar del usuario
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif" if message["role"] == "Bot" else st.session_state.user_avatar):
