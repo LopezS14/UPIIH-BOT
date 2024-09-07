@@ -49,7 +49,7 @@ def speak(text):
                 pass  # Manejo de excepción si el archivo aún está en uso
 
 # Ruta de la imagen
-user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"  # Asegúrate de que la ruta es correcta
+user_avatar = "https://github.com/LopezS14/UPIIH-BOT/tree/main/Bot"  # Asegúrate de que la ruta es correcta
 
 # Asegúrate de que la imagen existe
 
