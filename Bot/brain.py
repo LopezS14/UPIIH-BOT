@@ -12,16 +12,16 @@ from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-# Descargar recursos necesarios de NLTK si no están ya disponibles
+# Verifica si los recursos de NLTK están disponibles, si no, maneja el error
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
-    nltk.download('punkt')
+    st.error("Error: los recursos de NLTK no están disponibles en este entorno.")
     
 try:
     nltk.data.find('corpora/wordnet')
 except LookupError:
-    nltk.download('wordnet')
+    st.error("Error: los recursos de WordNet no están disponibles en este entorno.")
 
 # Inicializar el lematizador
 lemmatizer = WordNetLemmatizer()
@@ -34,7 +34,7 @@ def download_file(url, local_filename):
         with open(local_filename, 'wb') as f:
             f.write(response.content)
     except Exception as e:
-        print(f"Error al descargar el archivo desde {url}: {e}")
+        st.error(f"Error al descargar el archivo desde {url}: {e}")
 
 # URLs de los archivos
 intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
@@ -58,7 +58,7 @@ try:
         classes = pickle.load(f)
     model = load_model('chatbot_model.h5')
 except Exception as e:
-    print(f"Error al cargar los archivos: {e}")
+    st.error(f"Error al cargar los archivos: {e}")
 
 # Pasar las palabras de oración a su forma raíz
 def clean_up_sentence(sentence):
