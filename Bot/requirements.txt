@@ -1,9 +1,10 @@
-streamlit
-gtts
-pygame
+
 python-docx
 tensorflow
 nltk
 pydub
-playsound
-Pillow
+streamlit==1.38.0
+gtts==2.3.1
+pygame==2.3.0
+Pillow==9.2.0
+
