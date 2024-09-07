@@ -4,4 +4,3 @@ requests
 python-docx
 tensorflow
 nltk
-playsound
