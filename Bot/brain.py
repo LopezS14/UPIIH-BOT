@@ -1,4 +1,4 @@
-import random
+ximport random
 import io
 import streamlit as st
 import json
@@ -7,19 +7,27 @@ import numpy as np
 import requests
 from datetime import datetime
 from docx import Document as DocxDocument
-from nltk.tokenize import word_tokenize, sent_tokenize
+from tensorflow.keras.models import load_model
+from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
+
+# Descargar recursos necesarios de NLTK
+nltk.download('punkt')
+nltk.download('wordnet')
 
 # Inicializar el lematizador
 lemmatizer = WordNetLemmatizer()
 
 # Función para descargar archivos desde URLs
 def download_file(url, local_filename):
-    response = requests.get(url)
-    response.raise_for_status()
-    with open(local_filename, 'wb') as f:
-        f.write(response.content)
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        with open(local_filename, 'wb') as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"Error al descargar el archivo desde {url}: {e}")
 
 # URLs de los archivos
 intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
@@ -34,19 +42,24 @@ download_file(classes_url, 'classes.pkl')
 download_file(model_url, 'chatbot_model.h5')
 
 # Cargar archivos locales
-with open('intents.json') as f:
-    intents = json.load(f)
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+try:
+    with open('intents.json') as f:
+        intents = json.load(f)
+    with open('words.pkl', 'rb') as f:
+        words = pickle.load(f)
+    with open('classes.pkl', 'rb') as f:
+        classes = pickle.load(f)
+    model = load_model('chatbot_model.h5')
+except Exception as e:
+    print(f"Error al cargar los archivos: {e}")
 
-# Pasamos las palabras de oración a su forma raíz
+# Pasar las palabras de oración a su forma raíz
 def clean_up_sentence(sentence):
-    sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words]
     return sentence_words
 
-# Convertimos la información a unos y ceros según si están presentes en los patrones
+# Convertir la información a unos y ceros según si están presentes en los patrones
 def bag_of_words(sentence):
     sentence_words = clean_up_sentence(sentence)
     bag = [0]*len(words)
@@ -56,11 +69,11 @@ def bag_of_words(sentence):
                 bag[i] = 1
     return np.array(bag)
 
-# Predecimos la categoría a la que pertenece la oración
+# Predecir la categoría a la que pertenece la oración
 def predict_class(sentence):
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
-    max_index = np.where(res == np.max(res))[0][0]
+    max_index = np.argmax(res)
     category = classes[max_index]
     return category
 
@@ -100,7 +113,7 @@ def handle_document(tag):
             doc.save(buffer)
             buffer.seek(0)
             
-            # Mostrar botón de descarga en la interfaz de streamlit
+            # Mostrar botón de descarga en la interfaz de Streamlit
             st.download_button(
                 label="Descargar Temario",
                 data=buffer,
