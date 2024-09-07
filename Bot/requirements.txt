@@ -4,3 +4,6 @@ pygame
 python-docx
 tensorflow
 nltk
+pydub
+simpleaudio
+
