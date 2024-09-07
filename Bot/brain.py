@@ -4,20 +4,40 @@ import streamlit as st
 import json
 import pickle
 import numpy as np
+import requests
 from datetime import datetime
 from docx import Document as DocxDocument
 from tensorflow.keras.models import load_model
-#from keras.models import load_model
 import nltk
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
 
-# Importamos los archivos generados en el código anterior
-intents = json.loads(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/intents.json').read())
-words = pickle.load(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/words.pkl', 'rb'))
-classes = pickle.load(open('https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/classes.pkl, 'rb'))
-model = load_model('https://github.com/LopezS14/UPIIH-BOT/edit/main/Bot/brain.py')
+# Función para descargar archivos desde URLs
+def download_file(url, local_filename):
+    response = requests.get(url)
+    response.raise_for_status()
+    with open(local_filename, 'wb') as f:
+        f.write(response.content)
+
+# URLs de los archivos
+intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
+words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/words.pkl'
+classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/classes.pkl'
+model_url = 'https://github.com/LopezS14/UPIIH-BOT/raw/main/Bot/chatbot_model.h5'
+
+# Descargar archivos
+download_file(intents_url, 'intents.json')
+download_file(words_url, 'words.pkl')
+download_file(classes_url, 'classes.pkl')
+download_file(model_url, 'chatbot_model.h5')
+
+# Cargar archivos locales
+with open('intents.json') as f:
+    intents = json.load(f)
+words = pickle.load(open('words.pkl', 'rb'))
+classes = pickle.load(open('classes.pkl', 'rb'))
+model = load_model('chatbot_model.h5')
 
 # Pasamos las palabras de oración a su forma raíz
 def clean_up_sentence(sentence):
@@ -45,11 +65,10 @@ def predict_class(sentence):
 
 # Diccionario de rutas de documentos
 doc_paths = {
-    "Sistemas automotrices semestre 7": "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/automotricesSemestre7.docx",
-    "Ingenieria mecatronica semestre 1 ": "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/mecatronica1.docx",
-    "Sistemas automotrices semestre 7-programasintetico":"https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico":"https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M_PS1.pdf"
-    
+    "Sistemas automotrices semestre 7": "automotricesSemestre7.docx",
+    "Ingenieria mecatronica semestre 1 ": "mecatronica1.docx",
+    "Sistemas automotrices semestre 7-programasintetico": "SA_PS7.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico": "M_PS1.pdf"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
