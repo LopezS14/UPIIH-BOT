@@ -1,7 +1,6 @@
 import streamlit as st
 from gtts import gTTS
-import pygame
-from PIL import Image
+import io
 import os
 import tempfile
 from brain import predict_class, get_response, intents
@@ -109,26 +108,11 @@ st.sidebar.image(user_avatar, use_column_width=True)
 
 # Función para hablar
 def speak(text):
-    temp_audio_file = None
-    try:
-        temp_audio_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
-        tts = gTTS(text=text, lang='es')
-        tts.save(temp_audio_file.name)
-        temp_audio_file_path = temp_audio_file.name
-        temp_audio_file.close()
-
-        pygame.mixer.init()
-        pygame.mixer.music.load(temp_audio_file_path)
-        pygame.mixer.music.play()
-
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
-    finally:
-        if temp_audio_file:
-            try:
-                os.unlink(temp_audio_file_path)
-            except PermissionError:
-                pass
+    tts = gTTS(text=text, lang='es')
+    audio_file = io.BytesIO()
+    tts.write_to_fp(audio_file)
+    audio_file.seek(0)
+    st.audio(audio_file, format='audio/mp3')
 
 # Lógica del chatbot
 if "messages" not in st.session_state:
@@ -148,7 +132,7 @@ if st.session_state.first_message:
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
     st.session_state.first_message = False
-    speak(initial_message)
+    
 
 if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     with st.chat_message("user", avatar=st.session_state.user_avatar):
@@ -161,4 +145,4 @@ if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     with st.chat_message("Bot", avatar=user_avatar):
         st.markdown(res)
     st.session_state.messages.append({"role": "Bot", "content": res})
-    speak(res)
+ 
