@@ -1,4 +1,5 @@
 streamlit
 gtts
 pygame
+python-docx
 
