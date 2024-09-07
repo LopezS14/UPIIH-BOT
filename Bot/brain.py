@@ -48,7 +48,7 @@ doc_paths = {
     "Sistemas automotrices semestre 7": "C:/Users/Deyanira LS/Desktop/Bot/automotricesSemestre7.docx",
     "Ingenieria mecatronica semestre 1 ": "C:/Users/Deyanira LS/Desktop/Bot/mecatronica1.doc",
     "Sistemas automotrices semestre 7-programasintetico":"https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico":"C:/Users/Deyanira LS/Desktop/Bot/M_PS1.pdf"
+    "Ingenieria mecatronica semestre 1-programasintetico":"https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M_PS1.pdf"
     
 }
 
