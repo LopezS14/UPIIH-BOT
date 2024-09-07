@@ -3,3 +3,4 @@ gtts
 pygame
 python-docx
 tensorflow
+nltk
