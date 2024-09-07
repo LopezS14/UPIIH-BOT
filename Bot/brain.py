@@ -8,6 +8,7 @@ import requests
 from datetime import datetime
 from docx import Document as DocxDocument
 import re
+from tensorflow.keras.models import load_model  # Importación correcta
 
 # Función para descargar archivos desde URLs
 def download_file(url, local_filename):
@@ -33,7 +34,7 @@ with open('intents.json') as f:
     intents = json.load(f)
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')
+model = load_model('chatbot_model.h5')  # Cargar el modelo de la ruta
 
 # Función que tokeniza usando expresiones regulares en lugar de NLTK
 def clean_up_sentence(sentence):
