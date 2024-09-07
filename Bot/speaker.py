@@ -1,7 +1,6 @@
 import streamlit as st
 from gtts import gTTS
 import io
-import os
 import tempfile
 from brain import predict_class, get_response, intents
 
@@ -123,26 +122,26 @@ if "user_avatar" not in st.session_state:
     st.session_state.user_avatar = "https://www.example.com/default-avatar.png"  # Cambia a una URL válida
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"], avatar=user_avatar if message["role"] == "Bot" else st.session_state.user_avatar):
+    with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
 if st.session_state.first_message:
     initial_message = "Hola, ¿cómo puedo ayudarte?"
-    with st.chat_message("Bot", avatar=user_avatar):
+    with st.chat_message("Bot"):
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
     st.session_state.first_message = False
     speak(initial_message)
 
 if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
-    with st.chat_message("user", avatar=st.session_state.user_avatar):
+    with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     insts = predict_class(prompt)
     res = get_response(insts, intents)
 
-    with st.chat_message("Bot", avatar=user_avatar):
+    with st.chat_message("Bot"):
         st.markdown(res)
     st.session_state.messages.append({"role": "Bot", "content": res})
     speak(res)
