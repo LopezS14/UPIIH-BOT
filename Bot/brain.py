@@ -12,9 +12,16 @@ from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-# Descargar recursos necesarios de NLTK
-nltk.download('punkt')
-nltk.download('wordnet')
+# Descargar recursos necesarios de NLTK si no están ya disponibles
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+    
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet')
 
 # Inicializar el lematizador
 lemmatizer = WordNetLemmatizer()
