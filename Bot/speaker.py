@@ -1,10 +1,9 @@
-from pydub import AudioSegment
-from pydub.playback import play
+import streamlit as st
+from gtts import gTTS
+from playsound import playsound
 import tempfile
 import os
-from gtts import gTTS
 from PIL import Image
-import streamlit as st
 from brain import predict_class, get_response, intents
 
 # Configuración de la página
@@ -20,6 +19,7 @@ st.sidebar.markdown("<h1 style='font-size: 20px;'>Genera tu planeación didácti
 
 # Header
 image_path = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"
+image = Image.open(image_path)
 image_url = 'https://img.freepik.com/foto-gratis/acuarela-color-rojo-oscuro-textura-fondo-pintado-mano-fondo-color-vino-tinto-acuarela_145343-192.jpg?size=626&ext=jpg'
 st.markdown("""
     <style>
@@ -72,7 +72,6 @@ st.markdown("""
             height: 60px; /* Tamaño de imagen reducido para pantallas pequeñas */
         }
     }
-
     .circle-img {
         border-radius: 50%;
         width: 100px; /* Ajusta el tamaño según lo necesario */
@@ -83,6 +82,7 @@ st.markdown("""
         margin-right: auto;
     }
     </style>
+
     <div class="header-container">
         <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
             <img src="https://th.bing.com/th/id/OIP.MQI9waMb4IGJ52U8KF5gmgHaHa?rs=1&pid=ImgDetMain" class="header-logo">
@@ -95,7 +95,7 @@ st.markdown("""
             <p>Unidad Profesional Interdisciplinaria Campus de Ingeniería Hidalgo</p>
         </div>
     </div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 st.markdown(f"""
     <style>
@@ -106,10 +106,11 @@ st.markdown(f"""
         background-position: center;
     }}
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
+# Sidebar image
 with st.sidebar:
-    st.image(image_path, use_column_width=True)
+    st.image(image, use_column_width=True)
 
 def speak(text):
     temp_audio_file = None
@@ -121,11 +122,8 @@ def speak(text):
         temp_audio_file_path = temp_audio_file.name
         temp_audio_file.close()
 
-        # Reproducir el archivo de audio
-        audio = AudioSegment.from_mp3(temp_audio_file_path)
-        play(audio)
-    except Exception as e:
-        st.error(f"Error al reproducir el audio: {e}")
+        # Reproducir audio
+        playsound(temp_audio_file_path)
     finally:
         if temp_audio_file:
             try:
@@ -133,21 +131,20 @@ def speak(text):
             except PermissionError:
                 pass  # Manejo de excepción si el archivo aún está en uso
 
-# Ruta de la imagen
-user_avatar = "https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/user.png"  # Asegúrate de que la ruta es correcta
-
-# Lógica de mostración de la interfaz
+# Inicialización de estado de la sesión
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "first_message" not in st.session_state:
     st.session_state.first_message = True
 if "user_avatar" not in st.session_state:
-    st.session_state.user_avatar = user_avatar  # Ruta del avatar del usuario
+    st.session_state.user_avatar = "user.png"  # Ruta del avatar del usuario
 
+# Mostrar mensajes
 for message in st.session_state.messages:
     with st.chat_message(message["role"], avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif" if message["role"] == "Bot" else st.session_state.user_avatar):
         st.markdown(message["content"])
 
+# Mensaje inicial
 if st.session_state.first_message:
     initial_message = "Hola, ¿cómo puedo ayudarte?"
     with st.chat_message("Bot", avatar="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif"):
@@ -156,6 +153,7 @@ if st.session_state.first_message:
     st.session_state.first_message = False
     speak(initial_message)  # Hablar el mensaje inicial
 
+# Entrada del usuario
 if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     with st.chat_message("user", avatar=st.session_state.user_avatar):
         st.markdown(prompt)
