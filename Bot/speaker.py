@@ -12,10 +12,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Sidebar
-st.sidebar.markdown("<h1 style='font-size: 20px;'>Genera tu planeacion didactica con ayuda de un chatbot</h1>", unsafe_allow_html=True)
+# Generar side bar 
+st.sidebar.markdown("<h1 style='font-size: 20px;text-align:center;'>Genera tu planeacion didactica con ayuda de un chatbot</h1>", unsafe_allow_html=True)
 
-# Header
+# Header fuera del side bar
 image_url = 'https://img.freepik.com/foto-gratis/acuarela-color-rojo-oscuro-textura-fondo-pintado-mano-fondo-color-vino-tinto-acuarela_145343-192.jpg?size=626&ext=jpg'
 st.markdown("""
     <style>
