@@ -119,7 +119,7 @@ if "messages" not in st.session_state:
 if "first_message" not in st.session_state:
     st.session_state.first_message = True
 if "user_avatar" not in st.session_state:
-    st.session_state.user_avatar = "https://www.kindpng.com/picc/m/33-339225_person-icon-clip-arts-user-profile-icon-transparent.png"  # URL de la imagen del usuario
+    st.session_state.user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png"  # URL de la imagen del usuario
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
