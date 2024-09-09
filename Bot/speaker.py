@@ -4,7 +4,7 @@ import io
 import tempfile
 from brain import predict_class, get_response, intents
 
-# Configuración de la página
+# Configuración de la página y logo en el titulo del chatbot
 st.set_page_config(
     page_title="UPIIH BOT",
     page_icon="https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png",
@@ -101,7 +101,7 @@ st.markdown(f"""
     </style>
     """, unsafe_allow_html=True)
 
-# Cargar imagen en el sidebar
+# Generar la imagen en el sidebar
 user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png"
 st.sidebar.image(user_avatar, use_column_width=True)
 
