@@ -7,7 +7,7 @@ from brain import predict_class, get_response, intents
 # Configuración de la página
 st.set_page_config(
     page_title="UPIIH BOT",
-    page_icon="https://github.com/LopezS14/UPIIH-BOT/blob/main/Bot/M3.gif",
+    page_icon="https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
