@@ -65,7 +65,7 @@ doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasinetico": "Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1": "Bot/mecatronica 1.docx"
+    "Ingenieria mecatronica semestre 1": "https://github.com/LopezS14/UPIIH-BOT/blob/c27ed34209d8d0753ad8bf4ea7cc8667eca1d45b/Bot/ingenieriaMecatronica_1.docx"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
