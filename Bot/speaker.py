@@ -108,6 +108,7 @@ st.sidebar.image(user_avatar, use_column_width=True)
 def speak(text):
     if not text:
         st.write("No hay texto para hablar.")
+        speak(text)
         return
 
     tts = gTTS(text=text, lang='es')
