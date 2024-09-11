@@ -65,67 +65,57 @@ doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasintetico": "Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1" : "Bot/mecatronica1.docx"
- 
+    "Ingenieria mecatronica semestre 1": "Bot/mecatronica1.docx"
 }
-
 
 # Función para manejar el documento y proporcionar el botón de descarga
 def handle_document(tag):
     result = ""
     doc_path = doc_paths.get(tag)
-    
+
     if not doc_path:
         return "Documento no encontrado para el semestre o carrera solicitado."
 
-    # Determinar si el archivo es un .docx o un .pdf
-    if doc_path.endswith('.docx'):
-        try:
+    # Mostrar la ruta del archivo para depuración
+    st.write(f"Procesando documento: {doc_path}")
+
+    try:
+        if doc_path.endswith('.docx'):
             doc = DocxDocument(doc_path)
-            # Acceder a la tabla específica
             if len(doc.tables) > 0:
-                tabla_fecha = doc.tables[0]  # Acceder a la primera tabla
+                tabla_fecha = doc.tables[0]
                 if len(tabla_fecha.rows) > 0 and len(tabla_fecha.columns) > 1:
                     fila_index = 0
                     columna_index = 1
-                    # Accede a la celda específica 
                     celda = tabla_fecha.rows[fila_index].cells[columna_index]
                     current_date = datetime.today().strftime('%m/%d/%y %H:%M:%S')
                     celda.text = f"Fecha: {current_date}"
-            
-            # Guardar en un buffer en memoria
+
             buffer = io.BytesIO()
             doc.save(buffer)
             buffer.seek(0)
-            
-            # Mostrar botón de descarga en la interfaz de streamlit
+
             st.download_button(
                 label="Descargar Temario",
                 data=buffer,
                 file_name=f"Temario_{tag.replace(' ', '_')}.docx",
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
-        
-        except Exception as e:
-            result = f"Ocurrió un error al manejar el archivo DOCX: {e}"
-    
-    elif doc_path.endswith('.pdf'):
-        try:
-            # Leer el archivo PDF en un buffer
+
+        elif doc_path.endswith('.pdf'):
             with open(doc_path, "rb") as pdf_file:
                 pdf_buffer = pdf_file.read()
-            
-            # Mostrar botón de descarga para el PDF
+
             st.download_button(
                 label="Descargar programa sintetico",
                 data=pdf_buffer,
                 file_name=f"Programa_Sintetico_{tag.replace(' ', '_')}.pdf",
                 mime="application/pdf"
             )
-        
-        except Exception as e:
-            result = f"Ocurrió un error al manejar el archivo PDF: {e}"
-    
+
+    except Exception as e:
+        result = f"Ocurrió un error al manejar el archivo: {e}"
+
     return result
 
 # Obtener una respuesta aleatoria
@@ -134,11 +124,11 @@ def get_response(tag, intents_json):
     result = ""
     for i in list_of_intents:
         if i["tag"] == tag:
-            result = random.choice(i['responses'])   
+            result = random.choice(i['responses'])
             break
 
     # Manejar los documentos para diferentes semestres
     if tag in doc_paths:
         result += handle_document(tag)
-    
+
     return result
