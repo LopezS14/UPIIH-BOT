@@ -36,8 +36,8 @@
       "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu temario.", "Aquí tienes el temario solicitado.", "Aquí tienes."]
     },
     {
-      "tag": "Ingeniería mecatrónica semestre 1-programasintetico",
-      "patterns": ["dame el programa sintético del semestre 1 de Ingeniería Mecatrónica", "programa sintético Ingeniería Mecatrónica", "Ingeniería Mecatrónica semestre 1 programa sintético", "primer semestre Mecatrónica, programa sintético"],
+      "tag": "ingenieria mecatronica semestre 1-programasintetico",
+      "patterns": ["dame el programa sintético del semestre 1 de ingenieria mecatronica", "programa sintético ingenieria mecatronica", "ingenieria mecatronica semestre 1 programa sintético", "primer semestre mecatronica, programa sintético"],
       "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu programa.", "Aquí tienes el programa solicitado.", "Aquí tienes."]
     },
     {
