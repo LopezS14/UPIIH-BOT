@@ -64,7 +64,7 @@ def predict_class(sentence):
 # Diccionario de rutas de documentos
 doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
-    "Sistemas automotrices semestre 7-programasintetico": "Bot/M_PS1.pdf",
+    "Sistemas automotrices semestre 7-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/5fac103b8905a5e49c7b3a80eee59967e24de5f2/Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasintetico": "Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1": "Bot/ingenieriaMecatronica_1.docx"
 }
