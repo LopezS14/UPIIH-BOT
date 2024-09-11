@@ -106,10 +106,6 @@ user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.pn
 st.sidebar.image(user_avatar, use_column_width=True)
 #funcion  para hablar 
 def speak(text):
-    if not text:
-        st.write("No hay texto para hablar.")
-        return
-
     tts = gTTS(text=text, lang='es')
     audio_file = io.BytesIO()
     tts.write_to_fp(audio_file)
