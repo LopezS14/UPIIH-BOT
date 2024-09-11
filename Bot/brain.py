@@ -65,7 +65,7 @@ doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasintetico": "Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1:"Bot/M_PS1.pdf"
+    "Ingenieria mecatronica semestre 1: " "
 }
 
 
