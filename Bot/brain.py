@@ -128,6 +128,14 @@ def get_response(tag, intents_json):
             result = random.choice(i['responses'])
             break
 
+    if not result:
+        result = "Lo siento, no tengo una respuesta para esa solicitud."
+
+    if tag in doc_paths:
+        result += handle_document(tag)
+
+    return result
+
     # Manejar los documentos para diferentes semestres
     if tag in doc_paths:
         result += handle_document(tag)
