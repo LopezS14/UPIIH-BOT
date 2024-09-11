@@ -78,7 +78,7 @@ def handle_document(tag):
         return "Documento no encontrado para el semestre o carrera solicitado."
 
     # Mostrar la ruta del archivo para depuración
-    st.write(f"Procesando documento: {doc_path}")
+   # st.write(f"Procesando documento: {doc_path}")
 
     try:
         if doc_path.endswith('.docx'):
