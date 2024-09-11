@@ -64,7 +64,7 @@ def predict_class(sentence):
 doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico": "Bot/ingenieriaMecatronica_1.docx"
+    "Ingenieria mecatronica semestre 1": "Bot/ingenieriaMecatronica_1.docx"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
