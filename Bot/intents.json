@@ -1,67 +1,59 @@
 {
-    "intents": [
-      {
-        "tag": "saludo",
-        "patterns": ["hola", "qué tal", "cómo estás", "saludos", "ola",""],
-        "responses": ["Hola!", "Hola!, que necesitas?", "Hola!"]
-      },
-      {
-        "tag": "nombre",
-        "patterns": ["como es tu nombre", "como te llamas","cual es tu nombre","tienes nombre?"],
-        "responses": ["dime AI", "Mi nombre es AI"]
-      },
-      {
-        "tag": "funciones",
-        "patterns": ["que puedes hacer", "cuales son tus funciones", "como funcionas", "ayuda","ayudaa","no entiendo"],
-        "responses": ["Puedo proporcionarte los temarios de cada semestre de diversas carreras. Solo pide el temario del semestre y carrera que necesites."]
-      },
-      {
-        "tag": "Carreras",
-        "patterns": ["con cuales carreras cuentas", "cuales son las carreras que tienes", "dime las carreras que tienes ", "temarios de las carreras existentes?"],
-        "responses": ["Actualmente,cuento con la informacion de las areas de mecatronica y sistemas automotrices"]
-      },
-      {
-        "tag": "Sistemas automotrices semestre 7",
-        "patterns": ["dame el temario del semestre 7 de Automotrices", "temario 1 Sistemas Automotrices", "Sistemas automotrices semestre 1","primer semestre Sistemas Automotrices"],
-        "responses": ["Claro, aqui tienes, presiona el boton de descarga para adquirir tu temario", "De acuerdo, aqui tienes el temario de Sistemas de automotrices para el semestre 1,presiona el boton de descarga para adquirir tu temario", "Por supuesto!,presiona el boton de descarga para adquirir tu temario"]
-      },
-      {
-        "tag": "Sistemas automotrices semestre 7-programasintetico",
-        "patterns": ["dame el programa sintetico del semestre 7 de Sistemas Automotrices", "programa sintetico Sistemas Automatrices", "Sistemas automotrices semestre 7 programa sintetico","septimo semestre Automotrices, programa sintetico"],
-        "responses": ["Claro, aqui tienes, presiona el boton de descarga para adquirir tu temario", "De acuerdo, aqui tienes el temario de Sistemas automotrices para el semestre 7", "Por supuesto! Aqui tienes el programa solicitado"]
-      },
-      {
-        "tag": "Ingenieria mecatronica semestre 1 ",
-        "patterns":["dame el temario del primer semestre de mecatronica","Temario primer semestre mecatronica","Sistemas automotrices 1","sistemas automotrices modulo 1"],
-        "responses":["Claro, aqui tienes, presiona el boton de descarga para adquirir tu temario","Aqui tienes el temario solicitado","Aqui tienes"]
-
-      },
-      {
-        "tag": "Ingenieria mecatronica semestre 1-programasintetico",
-        "patterns": ["dame el programa sintetico del semestre 1 de Ingenieria mecatronica", "programa sintetico ingenieria mecatronica", "Ingenieria mecatronica semestre 1 programa sintetico","primer semestre mecatronica, programa sintetico"],
-        "responses": ["Claro, aqui tienes, presiona el boton de descarga para adquirir tu temario", "De acuerdo, aqui tienes el programa sintetico de ingenieria mecatronica para el semestre 1", "Por supuesto! Aqui tienes el programa solicitado"]
-      },
-
-      {
-        "tag": "afecto",
-        "patterns": ["te amo", "te adoro", "cásate conmigo", "eres el mejor", "me encantas"],
-        "responses": ["Eres muy amable!", "Gracias, yo también te aprecio!", "Eres genial", "Eso me alegra!", "Gracias por tu cariño!"]
-      },
-      {
-        "tag": "agradecimientos",
-        "patterns": ["gracias", "te agradezco la información", "muchas gracias", "gracias, te amo","gracias por la ayuda", "grasias","grashias"],
-        "responses": ["De nada!", "Estoy para servirte", "Ayudarte es un placer"]
-      },
-      {
-        "tag":"desconocidas",
-        "patterns":[""],
-        "responses":["lo lamento actualmente no tengo informacion para atender tu peticion."]
-      },
-      {
-        "tag": "despedida",
-        "patterns": ["adios", "hasta pronto", "nos vemos", "hasta luego","ya me voy"],
-        "responses": ["Adios!", "Hasta luego, ten un buen dia", "Nos vemos!"]
-      }
-    ]
-  }
-  
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": ["hola", "qué tal", "cómo estás", "saludos", "ola"],
+      "responses": ["Hola!", "Hola, ¿qué necesitas?", "Hola!"]
+    },
+    {
+      "tag": "nombre",
+      "patterns": ["cómo es tu nombre", "cómo te llamas", "cuál es tu nombre", "tienes nombre?"],
+      "responses": ["Mi nombre es AI."]
+    },
+    {
+      "tag": "funciones",
+      "patterns": ["qué puedes hacer", "cuáles son tus funciones", "cómo funcionas", "ayuda", "ayudame", "no entiendo"],
+      "responses": ["Puedo proporcionarte los temarios de cada semestre de diversas carreras. Solo pide el temario del semestre y carrera que necesites."]
+    },
+    {
+      "tag": "Carreras",
+      "patterns": ["¿con qué carreras cuentas?", "¿cuáles son las carreras disponibles?", "dime las carreras que tienes", "temarios de las carreras existentes"],
+      "responses": ["Actualmente, cuento con la información de las áreas de mecatrónica y sistemas automotrices."]
+    },
+    {
+      "tag": "Sistemas automotrices semestre 1",
+      "patterns": ["dame el temario del semestre 1 de Sistemas Automotrices", "temario semestre 1 Sistemas Automotrices", "Sistemas Automotrices semestre 1"],
+      "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu temario.", "De acuerdo, aquí tienes el temario de Sistemas Automotrices para el semestre 1. Presiona el botón de descarga para adquirir tu temario.", "Por supuesto, presiona el botón de descarga para adquirir tu temario."]
+    },
+    {
+      "tag": "Sistemas automotrices semestre 7-programasintetico",
+      "patterns": ["dame el programa sintético del semestre 7 de Sistemas Automotrices", "programa sintético Sistemas Automotrices", "Sistemas Automotrices semestre 7 programa sintético", "séptimo semestre Automotrices, programa sintético"],
+      "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu programa sintético.", "De acuerdo, aquí tienes el programa sintético de Sistemas Automotrices para el semestre 7.", "Por supuesto, aquí tienes el programa solicitado."]
+    },
+    {
+      "tag": "Ingeniería mecatrónica semestre 1",
+      "patterns": ["dame el temario del primer semestre de Mecatrónica", "temario primer semestre Mecatrónica", "Ingeniería Mecatrónica semestre 1", "Mecatrónica semestre 1"],
+      "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu temario.", "Aquí tienes el temario solicitado.", "Aquí tienes."]
+    },
+    {
+      "tag": "Ingeniería mecatrónica semestre 1-programasintetico",
+      "patterns": ["dame el programa sintético del semestre 1 de Ingeniería Mecatrónica", "programa sintético Ingeniería Mecatrónica", "Ingeniería Mecatrónica semestre 1 programa sintético", "primer semestre Mecatrónica, programa sintético"],
+      "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu programa sintético.", "De acuerdo, aquí tienes el programa sintético de Ingeniería Mecatrónica para el semestre 1.", "Por supuesto, aquí tienes el programa solicitado."]
+    },
+    {
+      "tag": "afecto",
+      "patterns": ["te amo", "te adoro", "cásate conmigo", "eres el mejor", "me encantas"],
+      "responses": ["Eres muy amable!", "Gracias, yo también te aprecio!", "Eres genial", "Eso me alegra!", "Gracias por tu cariño!"]
+    },
+    {
+      "tag": "agradecimientos",
+      "patterns": ["gracias", "te agradezco la información", "muchas gracias", "gracias, te amo", "gracias por la ayuda", "gracias", "grashias"],
+      "responses": ["De nada!", "Estoy para servirte", "Ayudarte es un placer"]
+    },
+    {
+      "tag": "despedida",
+      "patterns": ["adios", "hasta pronto", "nos vemos", "hasta luego", "ya me voy"],
+      "responses": ["Adiós!", "Hasta luego, ten un buen día", "Nos vemos!"]
+    }
+  ]
+}
