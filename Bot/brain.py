@@ -20,7 +20,7 @@ def download_file(url, local_filename):
 # URLs de los archivos
 intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
 words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/words.pkl'
-classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/classes.pkl'
+classes_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/a004de24c8047ca614238d9c88c97419b9ca2fb9/classes.pkl'
 model_url = 'https://github.com/LopezS14/UPIIH-BOT/raw/main/Bot/chatbot_model.h5'
 
 # Descargar archivos
