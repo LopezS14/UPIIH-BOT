@@ -22,10 +22,10 @@ def download_file(url, local_filename):
         f.write(response.content)
 
 # URLs de los archivos
-intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
-words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/words.pkl'
-classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/classes.pkl'
-model_url = 'https://github.com/LopezS14/UPIIH-BOT/raw/main/Bot/chatbot_model.h5'
+intents_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/intents.json'
+words_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/words.pkl'
+classes_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/classes.pkl'
+model_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/chatbot_model.h5'
 
 # Descargar archivos
 download_file(intents_url, 'intents.json')
@@ -66,10 +66,10 @@ def predict_class(sentence):
 
 # Diccionario de rutas de documentos
 doc_paths = {
-    "Sistemas automotrices semestre 7": "automotricesSemestre7.docx",
-    "Ingenieria mecatronica semestre 1": "mecatronica1.docx",
-    "Sistemas automotrices semestre 7-programasintetico": "SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico": "M_PS1.pdf"
+    "Sistemas automotrices semestre 7": "https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/automotricesSemestre7.docx",
+    "Ingenieria mecatronica semestre 1": "https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/ingenieriaMecatronica_1.docx",
+    "Sistemas automotrices semestre 7-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/SA_PS7.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/M_PS1.pdf"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
