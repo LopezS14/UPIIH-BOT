@@ -1,8 +1,4 @@
-gtts
-python
-streamlit
-io
-temptfile
-keras
-numpy
-tensorflow
+streamlit==1.38.0
+gtts==2.3.1
+pygame==2.3.0
+Pillow==9.2.0
