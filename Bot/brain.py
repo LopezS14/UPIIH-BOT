@@ -7,8 +7,12 @@ import numpy as np
 import requests
 from datetime import datetime
 from docx import Document as DocxDocument
-import re
-from tensorflow.keras.models import load_model  # Importación correcta
+from tensorflow.keras.models import load_model
+import nltk
+from nltk.stem import WordNetLemmatizer
+
+# Inicializar el lematizador
+lemmatizer = WordNetLemmatizer()
 
 # Función para descargar archivos desde URLs
 def download_file(url, local_filename):
@@ -18,11 +22,10 @@ def download_file(url, local_filename):
         f.write(response.content)
 
 # URLs de los archivos
-intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/bdd656bd0b3ada9d0b5fbe20b7596fd44f69771e/Bot/intents.json'
-words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/cbb939e3c2b77d30f000357bef91ac2bfe92acab/words.pkl'
-classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/a004de24c8047ca614238d9c88c97419b9ca2fb9/classes.pkl'
-model_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/f7f71c46318f8388254e880e0249973183604297/chatbot_model.h5'
-
+intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/intents.json'
+words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/words.pkl'
+classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/main/Bot/classes.pkl'
+model_url = 'https://github.com/LopezS14/UPIIH-BOT/raw/main/Bot/chatbot_model.h5'
 
 # Descargar archivos
 download_file(intents_url, 'intents.json')
@@ -35,18 +38,18 @@ with open('intents.json') as f:
     intents = json.load(f)
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
-model = load_model('chatbot_model.h5')  # Cargar el modelo de la ruta
+model = load_model('chatbot_model.h5')
 
-# Función que tokeniza usando expresiones regulares en lugar de NLTK
+# Pasamos las palabras de oración a su forma raíz
 def clean_up_sentence(sentence):
-    # Tokenizar usando expresiones regulares (dividir por espacios y puntuación)
-    sentence_words = re.findall(r'\b\w+\b', sentence.lower())
+    sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words]
     return sentence_words
 
 # Convertimos la información a unos y ceros según si están presentes en los patrones
 def bag_of_words(sentence):
     sentence_words = clean_up_sentence(sentence)
-    bag = [0] * len(words)
+    bag = [0]*len(words)
     for w in sentence_words:
         for i, word in enumerate(words):
             if word == w:
@@ -63,60 +66,68 @@ def predict_class(sentence):
 
 # Diccionario de rutas de documentos
 doc_paths = {
-    "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
-    "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/1364432eea20285aecd026fdcca39507ec8b5ad2/Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1": "Bot/ingenieriaMecatronica_1.docx"
+    "Sistemas automotrices semestre 7": "automotricesSemestre7.docx",
+    "Ingenieria mecatronica semestre 1": "mecatronica1.docx",
+    "Sistemas automotrices semestre 7-programasintetico": "SA_PS7.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico": "M_PS1.pdf"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
 def handle_document(tag):
     result = ""
     doc_path = doc_paths.get(tag)
-
+    
     if not doc_path:
         return "Documento no encontrado para el semestre o carrera solicitado."
 
-    # Mostrar la ruta del archivo para depuración
-   # st.write(f"Procesando documento: {doc_path}")
-
-    try:
-        if doc_path.endswith('.docx'):
+    # Determinar si el archivo es un .docx o un .pdf
+    if doc_path.endswith('.docx'):
+        try:
             doc = DocxDocument(doc_path)
+            # Acceder a la tabla específica
             if len(doc.tables) > 0:
-                tabla_fecha = doc.tables[0]
+                tabla_fecha = doc.tables[0]  # Acceder a la primera tabla
                 if len(tabla_fecha.rows) > 0 and len(tabla_fecha.columns) > 1:
                     fila_index = 0
                     columna_index = 1
+                    # Accede a la celda específica 
                     celda = tabla_fecha.rows[fila_index].cells[columna_index]
                     current_date = datetime.today().strftime('%m/%d/%y %H:%M:%S')
                     celda.text = f"Fecha: {current_date}"
-
+            
+            # Guardar en un buffer en memoria
             buffer = io.BytesIO()
             doc.save(buffer)
             buffer.seek(0)
-
+            
+            # Mostrar botón de descarga en la interfaz de streamlit
             st.download_button(
                 label="Descargar Temario",
                 data=buffer,
                 file_name=f"Temario_{tag.replace(' ', '_')}.docx",
                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
-
-        elif doc_path.endswith('.pdf'):
+        
+        except Exception as e:
+            result = f"Ocurrió un error al manejar el archivo DOCX: {e}"
+    
+    elif doc_path.endswith('.pdf'):
+        try:
+            # Leer el archivo PDF en un buffer
             with open(doc_path, "rb") as pdf_file:
                 pdf_buffer = pdf_file.read()
-
+            
+            # Mostrar botón de descarga para el PDF
             st.download_button(
                 label="Descargar programa sintetico",
                 data=pdf_buffer,
                 file_name=f"Programa_Sintetico_{tag.replace(' ', '_')}.pdf",
                 mime="application/pdf"
             )
-
-    except Exception as e:
-        result = f"Ocurrió un error al manejar el archivo: {e}"
-
+        
+        except Exception as e:
+            result = f"Ocurrió un error al manejar el archivo PDF: {e}"
+    
     return result
 
 # Obtener una respuesta aleatoria
@@ -125,19 +136,11 @@ def get_response(tag, intents_json):
     result = ""
     for i in list_of_intents:
         if i["tag"] == tag:
-            result = random.choice(i['responses'])
+            result = random.choice(i['responses'])   
             break
-
-    if not result:
-        result = "Lo siento, no tengo una respuesta para esa solicitud."
-
-    if tag in doc_paths:
-        result += handle_document(tag)
-
-    return result
 
     # Manejar los documentos para diferentes semestres
     if tag in doc_paths:
         result += handle_document(tag)
-
+    
     return result
