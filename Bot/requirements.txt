@@ -1,5 +1,5 @@
 gtts
-python-docx
+python
 streamlit
 io
 temptfile
