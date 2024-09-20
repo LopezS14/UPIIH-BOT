@@ -22,7 +22,7 @@
     },
     {
       "tag": "Sistemas automotrices semestre 7",
-      "patterns": ["dame el temario del semestre 7 de Sistemas Automotrices", "temario semestre 7 Sistemas Automotrices", "Sistemas Automotrices semestre 7"],
+      "patterns": ["dame el temario del semestre 7 de Sistemas Automotrices","1", "temario semestre 7 Sistemas Automotrices", "Sistemas Automotrices semestre 7"],
       "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu temario.", "Aquí tienes el temario solicitado.", "Aquí tienes."]
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "tag": "Ingenieria mecatronica semestre 1",
-      "patterns": ["dame el temario del semestre 1 de ingenieria mecatronica", "temario semestre 1 ingenieria mecatronica", "ingenieria mecatronia semestre 1"],
+      "patterns": ["dame el temario del semestre 1 de ingenieria mecatronica","2", "temario semestre 1 ingenieria mecatronica", "ingenieria mecatronia semestre 1"],
       "responses": ["Claro, aquí tienes, presiona el botón de descarga para adquirir tu temario.", "Aquí tienes el temario solicitado.", "Aquí tienes."]
     },
     {
@@ -50,6 +50,18 @@
       "patterns": ["gracias", "te agradezco la información", "muchas gracias", "gracias, te amo", "gracias por la ayuda", "gracias", "grashias"],
       "responses": ["De nada!", "Estoy para servirte", "Ayudarte es un placer"]
     },
+    { "tag": "Ayuda",
+    "patterns":["Proporcioname la planeacion","Quiero la planeacion de","necesito el temario de","planeacion","ayuda"],
+    "responses":[
+      "Quieres el temario o  el programa sintetico?" 
+    ]
+    },
+    {
+      "tag":"Temario",
+      "patterns":["temario"],
+      "responses":["Elije el numero del temario que desees: 1.ISISA 2.Mecatronica"]
+    },
+
     {
       "tag": "despedida",
       "patterns": ["adios", "hasta pronto", "nos vemos", "hasta luego", "ya me voy"],
