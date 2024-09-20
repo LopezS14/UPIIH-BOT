@@ -1,1 +1,8 @@
 gtts
+python-docx
+streamlit
+io
+temptfile
+keras
+numpy
+tensorflow
