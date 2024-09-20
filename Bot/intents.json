@@ -57,16 +57,6 @@
     ]
     },
     {
-      "tag":"Temario",
-      "patterns":["temario"],
-      "responses":["Elije el numero del temario que desees: 1 ISISA Semestre 7 2.Mecatronica Semestre 1"]
-    },
-    {
-      "tag":"1",
-      "patterns":["1","uno"],
-      "responses":["Aquí tienes el temario solicitado."]
-    },
-    {
       "tag": "despedida",
       "patterns": ["adios", "hasta pronto", "nos vemos", "hasta luego", "ya me voy"],
       "responses": ["Adiós!", "Hasta luego, ten un buen día", "Nos vemos!"]
