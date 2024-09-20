@@ -63,8 +63,8 @@ def predict_class(sentence):
 doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/34c504e7e583e24df0c5774e5d5fb1ba1949715f/Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1": "https://github.com/LopezS14/UPIIH-BOT/blob/34c504e7e583e24df0c5774e5d5fb1ba1949715f/Bot/ingenieriaMecatronica_1.docx"
+    "Ingenieria mecatronica semestre 1-programasintetico": "https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/34c504e7e583e24df0c5774e5d5fb1ba1949715f/Bot/M_PS1.pdf",
+    "Ingenieria mecatronica semestre 1": "https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/34c504e7e583e24df0c5774e5d5fb1ba1949715f/Bot/ingenieriaMecatronica_1.docx"
 }
 
 # Función para manejar el documento y proporcionar el botón de descarga
