@@ -104,14 +104,20 @@ st.markdown(f"""
 # Generar la imagen en el sidebar
 user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png"
 st.sidebar.image(user_avatar, use_column_width=True)
-
-# Función para hablar
+#funcion  para hablar 
 def speak(text):
+    if not text:
+        st.write("No hay texto para hablar.")
+        speak(text)
+        return
+
     tts = gTTS(text=text, lang='es')
     audio_file = io.BytesIO()
     tts.write_to_fp(audio_file)
     audio_file.seek(0)
     st.audio(audio_file, format='audio/mp3')
+
+
 
 # Lógica del chatbot
 if "messages" not in st.session_state:

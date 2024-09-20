@@ -65,7 +65,7 @@ def predict_class(sentence):
 doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
-    "ingenieria mecatronica semestre 1-programasintetico": "Bot/M_PS1.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico": "https://github.com/LopezS14/UPIIH-BOT/blob/1364432eea20285aecd026fdcca39507ec8b5ad2/Bot/M_PS1.pdf",
     "Ingenieria mecatronica semestre 1": "Bot/ingenieriaMecatronica_1.docx"
 }
 
@@ -78,7 +78,7 @@ def handle_document(tag):
         return "Documento no encontrado para el semestre o carrera solicitado."
 
     # Mostrar la ruta del archivo para depuración
-    st.write(f"Procesando documento: {doc_path}")
+   # st.write(f"Procesando documento: {doc_path}")
 
     try:
         if doc_path.endswith('.docx'):
@@ -127,6 +127,14 @@ def get_response(tag, intents_json):
         if i["tag"] == tag:
             result = random.choice(i['responses'])
             break
+
+    if not result:
+        result = "Lo siento, no tengo una respuesta para esa solicitud."
+
+    if tag in doc_paths:
+        result += handle_document(tag)
+
+    return result
 
     # Manejar los documentos para diferentes semestres
     if tag in doc_paths:
