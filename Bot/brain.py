@@ -18,7 +18,7 @@ def download_file(url, local_filename):
         f.write(response.content)
 
 # URLs de los archivos
-intents_url = 'Bot/intents.json'
+intents_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/6589c20626f5d7425d3dbdfd2f8de8e1a6f81ab5/Bot/intents.json'
 words_url = 'words.pkl'
 classes_url = 'classes.pkl'
 model_url = 'chatbot_model.h5'
