@@ -22,10 +22,10 @@ def download_file(url, local_filename):
         f.write(response.content)
 
 # URLs de los archivos
-intents_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/Bot/intents.json'
-words_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/words.pkl'
-classes_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/classes.pkl'
-model_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/7b3f3b8a3ddcc47b05e7414e8f31246c9edb6162/chatbot_model.h5'
+intents_url = 'https://github.com/LopezS14/UPIIH-BOT/Bot/intents.json'
+words_url = 'https://github.com/LopezS14/UPIIH-BOT/Bot/words.pkl'
+classes_url = 'https://github.com/LopezS14/UPIIH-BOT/Bot/classes.pkl'
+model_url = 'https://github.com/LopezS14/UPIIH-BOT/Bot/chatbot_model.h5'
 
 # Descargar archivos
 download_file(intents_url, 'intents.json')
