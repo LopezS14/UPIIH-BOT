@@ -7,7 +7,7 @@ import numpy as np
 import requests
 from datetime import datetime
 from docx import Document as DocxDocument
-import re
+import re 
 from tensorflow.keras.models import load_model
 
 # Función para descargar archivos desde URLs
@@ -64,7 +64,8 @@ doc_paths = {
     "Sistemas automotrices semestre 7": "Bot/automotricesSemestre7.docx",
     "Sistemas automotrices semestre 7-programasintetico": "Bot/SA_PS7.pdf",
     "Ingenieria mecatronica semestre 1-programasintetico": "Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1": "Bot/Bot/ingenieriaMecatronica_1.docx"}
+    "Ingenieria mecatronica semestre 1": "Bot/ingenieriaMecatronica_1.docx"
+    }
 
 
 # Función para manejar el documento y proporcionar el botón de descarga
@@ -75,7 +76,7 @@ def handle_document(tag):
     if not doc_path:
         return "Documento no encontrado para el semestre o carrera solicitado."
 
-    st.write(f"Procesando documento: {doc_path}")
+    #st.write(f"Procesando documento: {doc_path}") // ver los documentos procesados
 
     try:
         if doc_path.endswith('.docx'):
