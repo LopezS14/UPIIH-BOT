@@ -18,10 +18,10 @@ def download_file(url, local_filename):
         f.write(response.content)
 
 # URLs de los archivos
-intents_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/6589c20626f5d7425d3dbdfd2f8de8e1a6f81ab5/Bot/intents.json'
-words_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/641fb9f82b895e8d8492c25abd0e15a82a5be90f/words.pkl'
-classes_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/641fb9f82b895e8d8492c25abd0e15a82a5be90f/classes.pkl'
-model_url = 'https://github.com/LopezS14/UPIIH-BOT/blob/641fb9f82b895e8d8492c25abd0e15a82a5be90f/chatbot_model.h5'
+intents_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/6589c20626f5d7425d3dbdfd2f8de8e1a6f81ab5/Bot/intents.json'
+words_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/641fb9f82b895e8d8492c25abd0e15a82a5be90f/words.pkl'
+classes_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/641fb9f82b895e8d8492c25abd0e15a82a5be90f/classes.pkl'
+model_url = 'https://raw.githubusercontent.com/LopezS14/UPIIH-BOT/641fb9f82b895e8d8492c25abd0e15a82a5be90f/chatbot_model.h5'
 
 # Descargar archivos
 download_file(intents_url, 'intents.json')
