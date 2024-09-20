@@ -73,8 +73,6 @@ st.markdown("""
         margin-left: auto;
         margin-right: auto;
     }
-    .stApp > header > div > a {
-        display: none;}
     
     </style>
     <div class="header-container">
