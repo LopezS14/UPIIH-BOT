@@ -74,7 +74,16 @@ doc_paths = {
 Choose_temarios= st.multiselect("Elija el programa que necesite")
 if Choose_temarios:
     for programa in Choose_temarios:
-        file_path=Choose_temarios[programa]
+        file_path=doc_paths[programa]
+           # Crea un botón para descargar el archivo
+        with open(file_path, "rb") as file:
+            btn = st.download_button(
+                label=f"Descargar {programa}",
+                data=file,
+                file_name=file_path.split("/")[-1],  # Nombre del archivo al descargar
+                mime="application/octet-stream"
+            )
+
         
 # Función para manejar el documento y proporcionar el botón de descarga
 def handle_document(tag):
