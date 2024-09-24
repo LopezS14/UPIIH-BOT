@@ -72,7 +72,10 @@ doc_paths = {
 #Opciones de Menu
 #menu desplegable de elecciones
 Choose_temarios= st.multiselect("Elija el programa que necesite")
-
+if Choose_temarios:
+    for programa in Choose_temarios:
+        file_path=Choose_temarios[programa]
+        
 # Función para manejar el documento y proporcionar el botón de descarga
 def handle_document(tag):
     result = ""
