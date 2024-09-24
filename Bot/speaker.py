@@ -134,7 +134,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if st.session_state.first_message:
-    initial_message = "Hola, te muestro un menu de opciones a continuacion, selecciona la planeacion que necesites."
+    initial_message = "Hola,selecciona la planeacion que necesites."
     with st.chat_message("Bot"):
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
