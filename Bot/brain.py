@@ -68,13 +68,20 @@ doc_paths = {
    
     }
 
-
+Menu_paths ={
+    "Temario:Sistemas automotrices semestre 7-tecnologia de materiales automotrices": "Bot/automotricesSemestre7.docx",
+    "Sistemas automotrices semestre 7-programasintetico-tecnologia de materiales automotrices": "Bot/SA_PS7.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico-estructura y propiedades de los materiales": "Bot/M_PS1.pdf",
+    "Ingenieria mecatronica semestre 1-estructura y propiedades de los materiales": "Bot/ingenieriaMecatronica_1.docx"
+   
+}
 #Opciones de Menu
 #menu desplegable de elecciones
-Choose_temarios = st.multiselect("Temarios disponibles:", list(doc_paths.keys()))
+st.write("Selecciona la planeacion que necesites que necesites")
+Choose_temarios = st.multiselect("Planeaciones disponibles:", list(Menu_paths.keys()))
 if Choose_temarios:
     for programa in Choose_temarios:
-        file_path=doc_paths[programa]
+        file_path=Menu_paths[programa]
            # Crea un botón para descargar el archivo
         with open(file_path, "rb") as file:
             btn = st.download_button(
