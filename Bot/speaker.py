@@ -134,7 +134,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if st.session_state.first_message:
-    initial_message = "Hola, te muestro un menu de opciones a continuacion:"
+    initial_message = "Hola, te muestro un menu de opciones a continuacion, selecciona la planeacion que necesites."
     with st.chat_message("Bot"):
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
@@ -154,7 +154,7 @@ if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
     st.session_state.messages.append({"role": "Bot", "content": res})
     speak(res)
 #menu desplegable de elecciones
-st.write("Selecciona la planeacion que necesites que necesites")
+
 Choose_temarios = st.multiselect("Planeaciones disponibles:", list(Menu_paths.keys()))
 if Choose_temarios:
     for programa in Choose_temarios:
