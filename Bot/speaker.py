@@ -109,20 +109,7 @@ Menu_paths ={
    
 }
 #Opciones de Menu
-#menu desplegable de elecciones
-st.write("Selecciona la planeacion que necesites que necesites")
-Choose_temarios = st.multiselect("Planeaciones disponibles:", list(Menu_paths.keys()))
-if Choose_temarios:
-    for programa in Choose_temarios:
-        file_path=Menu_paths[programa]
-           # Crea un botón para descargar el archivo
-        with open(file_path, "rb") as file:
-            btn = st.download_button(
-                label=f"Descargar {programa}",
-                data=file,
-                file_name=file_path.split("/")[-1],  # Nombre del archivo al descargar
-                mime="application/octet-stream"
-            )
+
 
 # Generar la imagen en el sidebar
 user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png"
@@ -147,7 +134,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if st.session_state.first_message:
-    initial_message = "Hola, ¿cómo puedo ayudarte?"
+    initial_message = "Hola, te muestro un menu de opciones a continuacion:"
     with st.chat_message("Bot"):
         st.markdown(initial_message)
     st.session_state.messages.append({"role": "Bot", "content": initial_message})
@@ -166,3 +153,17 @@ if prompt := st.chat_input("¿Cómo puedo ayudarte?"):
         st.markdown(res)
     st.session_state.messages.append({"role": "Bot", "content": res})
     speak(res)
+#menu desplegable de elecciones
+st.write("Selecciona la planeacion que necesites que necesites")
+Choose_temarios = st.multiselect("Planeaciones disponibles:", list(Menu_paths.keys()))
+if Choose_temarios:
+    for programa in Choose_temarios:
+        file_path=Menu_paths[programa]
+           # Crea un botón para descargar el archivo
+        with open(file_path, "rb") as file:
+            btn = st.download_button(
+                label=f"Descargar {programa}",
+                data=file,
+                file_name=file_path.split("/")[-1],  # Nombre del archivo al descargar
+                mime="application/octet-stream"
+            )
