@@ -100,6 +100,29 @@ st.markdown(f"""
     }}
     </style>
     """, unsafe_allow_html=True)
+#generar menu de opciones 
+Menu_paths ={
+    "Temario:Sistemas automotrices semestre 7-tecnologia de materiales automotrices": "Bot/automotricesSemestre7.docx",
+    "Sistemas automotrices semestre 7-programasintetico-tecnologia de materiales automotrices": "Bot/SA_PS7.pdf",
+    "Ingenieria mecatronica semestre 1-programasintetico-estructura y propiedades de los materiales": "Bot/M_PS1.pdf",
+    "Ingenieria mecatronica semestre 1-estructura y propiedades de los materiales": "Bot/ingenieriaMecatronica_1.docx"
+   
+}
+#Opciones de Menu
+#menu desplegable de elecciones
+st.write("Selecciona la planeacion que necesites que necesites")
+Choose_temarios = st.multiselect("Planeaciones disponibles:", list(Menu_paths.keys()))
+if Choose_temarios:
+    for programa in Choose_temarios:
+        file_path=Menu_paths[programa]
+           # Crea un botón para descargar el archivo
+        with open(file_path, "rb") as file:
+            btn = st.download_button(
+                label=f"Descargar {programa}",
+                data=file,
+                file_name=file_path.split("/")[-1],  # Nombre del archivo al descargar
+                mime="application/octet-stream"
+            )
 
 # Generar la imagen en el sidebar
 user_avatar = "https://cdn.icon-icons.com/icons2/3399/PNG/512/bot_icon_214984.png"
