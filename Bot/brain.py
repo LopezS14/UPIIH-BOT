@@ -71,7 +71,7 @@ doc_paths = {
 
 #Opciones de Menu
 #menu desplegable de elecciones
-Choose_temarios= st.multiselect("Elija el programa que necesite")
+Choose_temarios = st.multiselect("Temarios disponibles:", list(doc_paths.keys()))
 if Choose_temarios:
     for programa in Choose_temarios:
         file_path=doc_paths[programa]
