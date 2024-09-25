@@ -102,10 +102,10 @@ st.markdown(f"""
     """, unsafe_allow_html=True)
 #generar menu de opciones 
 Menu_paths ={
-    "Temario:Sistemas automotrices semestre 7-tecnologia de materiales automotrices": "Bot/automotricesSemestre7.docx",
-    "Sistemas automotrices semestre 7-programasintetico-tecnologia de materiales automotrices": "Bot/SA_PS7.pdf",
-    "Ingenieria mecatronica semestre 1-programasintetico-estructura y propiedades de los materiales": "Bot/M_PS1.pdf",
-    "Ingenieria mecatronica semestre 1-estructura y propiedades de los materiales": "Bot/ingenieriaMecatronica_1.docx"
+    #"Temario:Sistemas automotrices semestre 7-tecnologia de materiales automotrices": "Bot/automotricesSemestre7.docx",
+    "Programa sinetico:Sistemas automotrices semestre 7-programasintetico-tecnologia de materiales automotrices": "Bot/SA_PS7.pdf",
+    "Programa SineticoIngenieria mecatronica semestre 1-programasintetico-estructura y propiedades de los materiales": "Bot/M_PS1.pdf",
+    #"Ingenieria mecatronica semestre 1-estructura y propiedades de los materiales": "Bot/ingenieriaMecatronica_1.docx"
    
 }
 #Opciones de Menu
